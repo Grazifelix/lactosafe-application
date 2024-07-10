@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "21247948423",
+    "project_id": "lactosafe-app",
+    "storage_bucket": "lactosafe-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21247948423:android:411788e50ee9f0ebd66a22",
+        "android_client_info": {
+          "package_name": "com.example.lactosafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "21247948423-vd7k69qtvl8mtn0m9tluauvb3n4q1fjf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-RTMaAvyc1nJXr6EdEmzkUEwsvAfe0Jk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "21247948423-vd7k69qtvl8mtn0m9tluauvb3n4q1fjf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
