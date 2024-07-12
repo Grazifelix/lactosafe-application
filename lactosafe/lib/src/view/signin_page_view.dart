@@ -1,10 +1,9 @@
+import 'package:LactoSafe/src/controller/sign_in_page_controller.dart';
 import 'package:LactoSafe/src/controller/textfield_controller.dart';
-import 'package:LactoSafe/src/model/user_model.dart';
 import 'package:LactoSafe/src/shared/app_colors.dart';
 import 'package:LactoSafe/src/shared/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:LactoSafe/src/components/custom_text_field.dart';
-import 'package:LactoSafe/src/controller/singin_page_controller.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -88,14 +87,10 @@ class _SignInState extends State<SignIn> {
                               textFieldController.getEmailFromTextField();
                           String password =
                               textFieldController.getPasswordFromTextField();
-                          var status = await login(email, password, context);
-                          setState(() {
-                            if (status != null) {
-                              if (status['isLogged'] == false) {
-                                loginStatus = status['error'];
-                              }
-                            }
-                          });
+
+                          loginStatus = await signInController(context, email, password);
+                          
+                          setState(() {});
                         },
                         child: const Text(
                           'Entrar',
