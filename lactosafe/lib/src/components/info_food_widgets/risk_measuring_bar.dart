@@ -1,5 +1,6 @@
 import 'package:LactoSafe/src/components/info_food_widgets/emoji_risk_measuring_item.dart';
 import 'package:LactoSafe/src/components/info_food_widgets/point_risk_measuring_itens.dart';
+import 'package:LactoSafe/src/controller/Info_food_controllers/food_risk_text_color.dart';
 import 'package:LactoSafe/src/shared/app_colors.dart';
 import 'package:LactoSafe/src/shared/app_settings.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,7 @@ class RiskMeasuringBar extends StatelessWidget {
       ),
       pointRiskMeasuringItem(risk: foodRisk),
       emojiRiskMeasuringItem(risk: foodRisk),
+      Positioned(top: 40, child: Text("Inexistente", style: TextStyle(color: foodRiskTextColor(risk: 'Inexistente'), fontWeight: FontWeight.w800),),)
     ]);
   }
 }

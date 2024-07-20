@@ -7,7 +7,7 @@ import '../../shared/app_settings.dart';
 
 Widget buildFoodInformation({required FoodModel food}) {
   return Container(
-    padding: const EdgeInsets.all(30.0),
+    padding: const EdgeInsets.only(left: 30.0, right: 30, top: 30),
     alignment: Alignment.topCenter,
     child: SingleChildScrollView(
       child: Column(
@@ -60,23 +60,18 @@ Widget buildFoodInformation({required FoodModel food}) {
                       alignment: Alignment.centerRight,
                       child: FloatingActionButton(
                         heroTag: 'Favorite',
-                        backgroundColor: AppColors.orange,
+                        backgroundColor: AppColors.pure_white,
                         onPressed: () {},
-                        child: const Icon(Icons.favorite),
+                        child: Icon(
+                          Icons.favorite_border_rounded,
+                          color: AppColors.orange,
+                        ),
                       ),
                     ),
                     const SizedBox(
                       height: 10.0,
                     ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: FloatingActionButton(
-                        heroTag: 'MoreInformation',
-                        backgroundColor: AppColors.orange,
-                        onPressed: () {},
-                        child: const Icon(Icons.question_mark_sharp),
-                      ),
-                    )
+              
                   ],
                 )
               ],
@@ -87,35 +82,234 @@ Widget buildFoodInformation({required FoodModel food}) {
           ),
           RiskMeasuringBar(foodRisk: food.getLactoseRisk as double),
           SizedBox(
-            height: AppSettings.screenHeight / 30,
+            height: AppSettings.screenHeight / 16,
+          ),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+                border: Border.all(color: AppColors.orange, width: 2),
+                borderRadius: BorderRadius.circular(24)),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Icon(
+                Icons.emoji_objects_outlined,
+                color: AppColors.orange,
+                weight: 200,
+                size: 40,
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              Expanded(
+                child: Text.rich(TextSpan(children: [
+                  TextSpan(
+                    text: 'Risco de conter lactose: ',
+                    style: TextStyle(
+                      color: AppColors.grey,
+                      fontSize: 18,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                  TextSpan(
+                    text: '${food.getLactoseRiskStr}.',
+                    style: TextStyle(
+                      color: foodRiskTextColor(
+                          risk: food.getLactoseRiskStr as String),
+                      fontSize: 18,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  TextSpan(
+                      text: "\nSubstitua por ${food.getFoodName} sem lactose: ",
+                      style: TextStyle(
+                        color: AppColors.grey,
+                        fontSize: 18,
+                        fontFamily: 'Roboto',
+                      )),
+                  TextSpan(
+                      text:
+                          "confira receitas.", //receitas precisa ser clicavel e que leve para um link externo
+                      style: TextStyle(
+                          color: AppColors.orange,
+                          fontSize: 18,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.w700,
+                          decoration: TextDecoration.underline,
+                          decorationColor: AppColors.orange,
+                          decorationThickness: 2))
+                ])),
+              )
+            ]),
           ),
           SizedBox(
-            child: Text.rich(TextSpan(children: [TextSpan(
-                            text: 'Risco de conter lactose: ',
-                            style: TextStyle(
-                              color: AppColors.grey,
-                              fontSize: 18,
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ), TextSpan(
-                            text: '${food.getLactoseRiskStr}',
-                            style: TextStyle(
-                              color: foodRiskTextColor(risk: food.getLactoseRiskStr as String),
-                              fontSize: 18,
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),])),
+            height: AppSettings.screenHeight / 30,
           ),
-          SizedBox(height: AppSettings.screenHeight/30,),
-          Text(food.getHelpText as String, style: TextStyle(
-              color: AppColors.grey,
-              fontSize: 16,
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.w400,
-            ),),
-          
+          Text(
+            "Ingredientes que contém lactose neste alimento:",
+            style: TextStyle(
+                color: AppColors.grey,
+                fontFamily: 'Roboto',
+                fontSize: 24,
+                fontWeight: FontWeight.w700),
+          ),
+          SizedBox(
+            height: AppSettings.screenHeight / 48,
+          ),
+          //transformar essa parte em um ListBuilder
+          Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.orange, width: 2),
+                  borderRadius: BorderRadius.circular(24)),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.gpp_maybe_outlined,
+                    color: AppColors.orange,
+                    size: 40,
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                      child: Text(
+                    "Nome do Alimento", //nome do alimento precisa ser dinamico
+                    style: TextStyle(
+                      color: AppColors.grey,
+                      fontSize: 18,
+                      fontFamily: 'Roboto',
+                    ),
+                  ))
+                ],
+              )),
+          SizedBox(
+            height: AppSettings.screenHeight / 30,
+          ),
+          Text(
+            "Tabela Nutricional do ${food.getFoodName} (por unidade de 30g):", //mudar para o nome do alimento ficar dinamico
+            style: TextStyle(
+                color: AppColors.grey,
+                fontFamily: 'Roboto',
+                fontSize: 24,
+                fontWeight: FontWeight.w700),
+          ),
+
+          SizedBox(
+            height: AppSettings.screenHeight / 48,
+          ),
+
+          Container(
+            padding: EdgeInsets.all(16),
+            decoration: BoxDecoration(
+                color: AppColors.pure_white,
+                borderRadius: BorderRadius.circular(24), 
+              
+                boxShadow: [BoxShadow(
+                  color: Color(0x0C000000),
+                  blurRadius: 30,
+                  offset: Offset(0, 15),
+                  spreadRadius: 20,
+                )]),
+                
+            child: Column(
+              children: [
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Nutriente",
+                        style: TextStyle(
+                            color: AppColors.grey,
+                            fontFamily: "Roboto",
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Text("Quantidade",
+                          style: TextStyle(
+                              color: AppColors.grey,
+                              fontFamily: "Roboto",
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600)),
+                      Text("%VD",
+                          style: TextStyle(
+                              color: AppColors.grey,
+                              fontFamily: "Roboto",
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600))
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      color: AppColors.backgroundColor),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Calorias",
+                        style: TextStyle(
+                          color: AppColors.grey,
+                          fontFamily: "Roboto",
+                          fontSize: 18,
+                        ),
+                      ),
+                      Text("Quantidade",
+                          style: TextStyle(
+                            color: AppColors.grey,
+                            fontFamily: "Roboto",
+                            fontSize: 18,
+                          )),
+                      Text("%VD",
+                          style: TextStyle(
+                            color: AppColors.grey,
+                            fontFamily: "Roboto",
+                            fontSize: 18,
+                          ))
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      color: AppColors.backgroundColor),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Calorias",
+                        style: TextStyle(
+                          color: AppColors.grey,
+                          fontFamily: "Roboto",
+                          fontSize: 18,
+                        ),
+                      ),
+                      Text("Quantidade",
+                          style: TextStyle(
+                            color: AppColors.grey,
+                            fontFamily: "Roboto",
+                            fontSize: 18,
+                          )),
+                      Text("%VD",
+                          style: TextStyle(
+                            color: AppColors.grey,
+                            fontFamily: "Roboto",
+                            fontSize: 18,
+                          ))
+                    ],
+                  ),
+                ),
+                
+              ],
+            ),
+          ),
+          SizedBox(height: 40,)
         ],
       ),
     ),
