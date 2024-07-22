@@ -80,7 +80,7 @@ Widget buildFoodInformation({required FoodModel food}) {
           SizedBox(
             height: AppSettings.screenHeight / 15,
           ),
-          RiskMeasuringBar(foodRisk: food.getLactoseRisk as double),
+          RiskMeasuringBar(foodRisk: food.getLactoseRisk as double, foodRiskName: food.getLactoseRiskStr as String,),
           SizedBox(
             height: AppSettings.screenHeight / 16,
           ),
@@ -204,8 +204,8 @@ Widget buildFoodInformation({required FoodModel food}) {
                 color: AppColors.pure_white,
                 borderRadius: BorderRadius.circular(24), 
               
-                boxShadow: [BoxShadow(
-                  color: Color(0x0C000000),
+                boxShadow: const [BoxShadow(
+                  color: Color.fromRGBO(0, 0, 0, 0.047),
                   blurRadius: 30,
                   offset: Offset(0, 15),
                   spreadRadius: 20,
@@ -213,35 +213,33 @@ Widget buildFoodInformation({required FoodModel food}) {
                 
             child: Column(
               children: [
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Nutriente",
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Nutriente",
+                      style: TextStyle(
+                          color: AppColors.grey,
+                          fontFamily: "Roboto",
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    Text("Quantidade",
                         style: TextStyle(
                             color: AppColors.grey,
                             fontFamily: "Roboto",
                             fontSize: 18,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Text("Quantidade",
-                          style: TextStyle(
-                              color: AppColors.grey,
-                              fontFamily: "Roboto",
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600)),
-                      Text("%VD",
-                          style: TextStyle(
-                              color: AppColors.grey,
-                              fontFamily: "Roboto",
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600))
-                    ],
-                  ),
+                            fontWeight: FontWeight.w600)),
+                    Text("%VD",
+                        style: TextStyle(
+                            color: AppColors.grey,
+                            fontFamily: "Roboto",
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600))
+                  ],
                 ),
                 Container(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(24),
                       color: AppColors.backgroundColor),
@@ -249,20 +247,20 @@ Widget buildFoodInformation({required FoodModel food}) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Calorias",
+                        "Valor Energético",
                         style: TextStyle(
                           color: AppColors.grey,
                           fontFamily: "Roboto",
                           fontSize: 18,
                         ),
                       ),
-                      Text("Quantidade",
+                      Text("0",
                           style: TextStyle(
                             color: AppColors.grey,
                             fontFamily: "Roboto",
                             fontSize: 18,
                           )),
-                      Text("%VD",
+                      Text("0",
                           style: TextStyle(
                             color: AppColors.grey,
                             fontFamily: "Roboto",
@@ -283,20 +281,20 @@ Widget buildFoodInformation({required FoodModel food}) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Calorias",
+                        "Carboidratos      ",
                         style: TextStyle(
                           color: AppColors.grey,
                           fontFamily: "Roboto",
                           fontSize: 18,
                         ),
                       ),
-                      Text("Quantidade",
+                      Text("0",
                           style: TextStyle(
                             color: AppColors.grey,
                             fontFamily: "Roboto",
                             fontSize: 18,
                           )),
-                      Text("%VD",
+                      Text("0",
                           style: TextStyle(
                             color: AppColors.grey,
                             fontFamily: "Roboto",
@@ -304,6 +302,80 @@ Widget buildFoodInformation({required FoodModel food}) {
                           ))
                     ],
                   ),
+                ),
+
+                const SizedBox(
+                  height: 8,
+                ),
+
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      color: AppColors.backgroundColor),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Proteínas           ",
+                        style: TextStyle(
+                          color: AppColors.grey,
+                          fontFamily: "Roboto",
+                          fontSize: 18,
+                        ),
+                      ),
+                      Text("0",
+                          style: TextStyle(
+                            color: AppColors.grey,
+                            fontFamily: "Roboto",
+                            fontSize: 18,
+                          )),
+                      Text("0",
+                          style: TextStyle(
+                            color: AppColors.grey,
+                            fontFamily: "Roboto",
+                            fontSize: 18,
+                          ))
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      color: AppColors.backgroundColor),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Gorduras Totais",
+                        style: TextStyle(
+                          color: AppColors.grey,
+                          fontFamily: "Roboto",
+                          fontSize: 18,
+                        ),
+                      ),
+                      Text("0",
+                          style: TextStyle(
+                            color: AppColors.grey,
+                            fontFamily: "Roboto",
+                            fontSize: 18,
+                          )),
+                      Text("0",
+                          style: TextStyle(
+                            color: AppColors.grey,
+                            fontFamily: "Roboto",
+                            fontSize: 18,
+                          ))
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
                 ),
                 
               ],
