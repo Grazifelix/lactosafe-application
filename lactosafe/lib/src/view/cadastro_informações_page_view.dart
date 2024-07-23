@@ -40,52 +40,6 @@ class CadastroInformationState extends State<CadastroInformation> {
               ),
             ),
             const Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Text("E-mail"),
-              ),
-            ),
-            CustomTextField(
-              icon: Icons.email,
-              label: "nome@dominio.com",
-              controller: textFieldController.emailController,
-              validator: (value) {
-                return null;
-              },
-            ),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Text("Senha"),
-              ),
-            ),
-            CustomTextField(
-              icon: Icons.lock,
-              label: "Insira sua senha",
-              isObscure: true,
-              controller: textFieldController.passwordController,
-              validator: (value) {
-                return null;
-              },
-            ),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Text("Nome de usuário"),
-              ),
-            ),
-            CustomTextField(
-              icon: Icons.person,
-              label: "Insira o nome de usuário",
-              controller: TextEditingController(),
-              validator: (value) {
-                return null;
-              },
-            ),
-            const Align(
               alignment: Alignment.bottomLeft,
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -130,7 +84,7 @@ class CadastroInformationState extends State<CadastroInformation> {
                 String endereco =
                     textFieldController.getEnderecoNameTextField();
                 String tipoIntolerancia = selectedOption;
-                print("${email}, ${password}");
+                print("$email, $password");
                 bool isRegistered = await Cadastro(email, password, username,
                     endereco, tipoIntolerancia, context);
                 if (isRegistered) {

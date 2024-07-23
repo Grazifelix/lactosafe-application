@@ -28,16 +28,16 @@ class _WelcomePageState extends State<WelcomePage> {
     Widget pageWidget = Container();
 
     if (currentPage == 0) {
-      pageWidget = PageOne();
+      pageWidget = const PageOne();
     } else if (currentPage == 1) {
-      pageWidget = PageTwo();
+      pageWidget = const PageTwo();
     } else if (currentPage == 2) {
-      pageWidget = PageThree();
+      pageWidget = const PageThree();
     } else if (currentPage == 3) {
-      pageWidget = PageFour();
+      pageWidget = const PageFour();
     } else if (currentPage == 4) {
       finalPageButton = 'Finalizar';
-      pageWidget = PageFive();
+      pageWidget = const PageFive();
     }
 
     List<Widget> pageIndicator = List.generate(
