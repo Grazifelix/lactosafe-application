@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:LactoSafe/src/shared/app_images.dart';
 
 class PageOne extends StatelessWidget {
+  const PageOne({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -89,6 +91,8 @@ class PageOne extends StatelessWidget {
 }
 
 class PageTwo extends StatelessWidget {
+  const PageTwo({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -174,6 +178,8 @@ class PageTwo extends StatelessWidget {
 }
 
 class PageThree extends StatelessWidget {
+  const PageThree({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -263,6 +269,8 @@ class PageThree extends StatelessWidget {
 }
 
 class PageFour extends StatelessWidget {
+  const PageFour({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -349,6 +357,8 @@ class PageFour extends StatelessWidget {
 }
 
 class PageFive extends StatelessWidget {
+  const PageFive({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(

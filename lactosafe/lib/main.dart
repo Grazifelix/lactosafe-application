@@ -1,4 +1,3 @@
-import 'package:LactoSafe/src/controller/auth_check.dart';
 import 'package:LactoSafe/src/model/auth_service.dart';
 import 'package:LactoSafe/src/shared/app_colors.dart';
 import 'package:LactoSafe/src/view/camera_view.dart';
@@ -62,9 +61,8 @@ class MyApp extends StatelessWidget {
           appBarTheme: AppBarTheme(
               elevation: 0, backgroundColor: AppColors.backgroundColor),
         ),
-        initialRoute: AuthCheck.routeName,
+        initialRoute: SignIn.routeName,
         routes: {
-          AuthCheck.routeName: (context) => const AuthCheck(),
           SignIn.routeName: (context) => const SignIn(),
           ResetPassword.routeName: (context) => const ResetPassword(),
           HomePage.routeName: (context) => const HomePage(),

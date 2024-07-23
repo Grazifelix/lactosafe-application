@@ -1,13 +1,14 @@
 import 'package:LactoSafe/src/components/photo_widget.dart';
+import 'package:LactoSafe/src/model/auth_service.dart';
 import 'package:LactoSafe/src/shared/app_colors.dart';
 import 'package:LactoSafe/src/shared/app_images.dart';
 import 'package:LactoSafe/src/shared/app_settings.dart';
 import 'package:LactoSafe/src/view/home_page_view.dart';
 import 'package:LactoSafe/src/view/map_page_view.dart';
+import 'package:LactoSafe/src/view/signin_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,44 +30,50 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          toolbarHeight: AppSettings.screenHeight/12,
-          leading: PhotoWidget(picture: null, height: 4, width: 4),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: InkWell(
-                onTap: () {
-                  Navigator.popAndPushNamed(context, '/settings');
-                },
-                child: SvgPicture.asset(
-                  AppImages.menuIcon,
-                  height: AppSettings.screenHeight / 15,
+    return Consumer<AuthService>(builder: (context, auth, _) {
+      if (auth.currentUser == null) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          Navigator.popAndPushNamed(context, SignIn.routeName);
+        });
+      }
+      return Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            toolbarHeight: AppSettings.screenHeight / 12,
+            leading: const PhotoWidget(picture: null, height: 4, width: 4),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 15.0),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/settings');
+                  },
+                  child: SvgPicture.asset(
+                    AppImages.menuIcon,
+                    height: AppSettings.screenHeight / 15,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        body: _pages.elementAt(_indiceAtual),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: SizedBox(
-            width: 85.0,
-            height: 85.0,
-            child: FittedBox(
-                child: FloatingActionButton.large(
-              onPressed: () {
-                Navigator.pushNamed(context, '/camera');
-                
-              },
-              backgroundColor: AppColors.orange,
-              child: Image.asset(AppImages.cameraIcon)
-            ))),
-        bottomNavigationBar: SizedBox(
-          height: 90,
-          child: _getBottomNavigationBar(),
-        ));
+            ],
+          ),
+          body: _pages.elementAt(_indiceAtual),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: SizedBox(
+              width: 85.0,
+              height: 85.0,
+              child: FittedBox(
+                  child: FloatingActionButton.large(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/camera');
+                      },
+                      backgroundColor: AppColors.orange,
+                      child: Image.asset(AppImages.cameraIcon)))),
+          bottomNavigationBar: SizedBox(
+            height: 90,
+            child: _getBottomNavigationBar(),
+          ));
+    });
   }
 
   ClipRRect _getBottomNavigationBar() {
@@ -82,15 +89,9 @@ class _HomePageState extends State<HomePage> {
         onTap: onTabTapped,
         items: [
           BottomNavigationBarItem(
-              icon: 
-              Image.asset(AppImages.homeIcon),
-
-              label: 'Home'),
+              icon: Image.asset(AppImages.homeIcon), label: 'Home'),
           BottomNavigationBarItem(
-              icon: 
-              Image.asset(AppImages.mapIcon),
-
-              label: 'Mapa')
+              icon: Image.asset(AppImages.mapIcon), label: 'Mapa')
         ],
       ),
     );
