@@ -63,74 +63,47 @@ class _WelcomePageState extends State<WelcomePage> {
         children: [
           pageWidget,
           Positioned(
-            top: 0,
-            bottom: 0,
-            right: 100,
-            left: 100,
-            child: Padding(
-              //Atenção, gambiarra
-              padding: const EdgeInsets.only(top: 500.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: pageIndicator,
-              ),
+            bottom: 100,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: pageIndicator,
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-                  child: SizedBox(
-                    height: 50,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/SignIn');
-                      },
-                      child: const Text(
-                        "Pular",
-                        style: TextStyle(
-                          color: Color.fromARGB(221, 63, 62, 62),
-                          fontSize: 16,
-                        ),
-                      ),
+          Positioned(
+            bottom: 20,
+            left: 20,
+            right: 20,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/SignIn');
+                  },
+                  child: const Text(
+                    "Pular",
+                    style: TextStyle(
+                      color: Color.fromARGB(221, 63, 62, 62),
+                      fontSize: 16,
                     ),
                   ),
                 ),
-              ),
-              const Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-                  child: SizedBox(
-                    width: 100,
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                  ),
+                  onPressed: () {
+                    goToNextPage();
+                  },
+                  child: Text(
+                    finalPageButton,
+                    style: const TextStyle(fontSize: 16),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 20, 20),
-                  child: SizedBox(
-                    height: 50,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: const StadiumBorder()
-                      ),
-                      onPressed: () {
-                        goToNextPage();
-                      },
-                      child: Text(
-                        finalPageButton,
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
