@@ -51,11 +51,14 @@ class _SignInState extends State<SignIn> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     //Email
-                    CustomTextField(
-                      icon: Icons.email,
-                      label: 'Email',
-                      isObscure: false,
-                      controller: textFieldController.emailController,
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20.0, top: 20.0),
+                      child: CustomTextField(
+                        icon: Icons.email,
+                        label: 'Email',
+                        isObscure: false,
+                        controller: textFieldController.emailController,
+                      ),
                     ),
                     //Senha
                     CustomTextField(
