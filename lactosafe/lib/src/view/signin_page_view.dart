@@ -132,23 +132,26 @@ class _SignInState extends State<SignIn> {
                     ),
 
                     ///CadastroButton
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Não possui uma conta?',
-                          style: TextStyle(fontSize: 15),
-                        ),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.popAndPushNamed(context, '/signup');
-                            },
-                            child: Text(
-                              'Cadastre-se aqui!',
-                              style: TextStyle(
-                                  fontSize: 15, color: AppColors.orange),
-                            )),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                      child: Wrap(
+                        alignment: WrapAlignment.center,
+                        children: [
+                          const Text(
+                            'Não possui uma conta?',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.popAndPushNamed(context, '/signup');
+                              },
+                              child: Text(
+                                'Cadastre-se aqui!',
+                                style: TextStyle(
+                                    fontSize: 15, color: AppColors.orange),
+                              )),
+                        ],
+                      ),
                     )
                   ],
                 ),

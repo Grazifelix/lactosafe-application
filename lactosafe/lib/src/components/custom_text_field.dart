@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:LactoSafe/src/shared/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final IconData icon;
@@ -8,14 +9,12 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextEditingController controller;
 
-
-
-const CustomTextField({
+  const CustomTextField({
     Key? key,
     required this.icon,
     required this.label,
     this.isObscure = false,
-    this.iconSize=20,
+    this.iconSize = 20,
     this.validator,
     required this.controller,
   }) : super(key: key);
@@ -29,12 +28,15 @@ const CustomTextField({
         validator: validator,
         obscureText: isObscure,
         decoration: InputDecoration(
-          prefixIcon: Icon(icon, size: iconSize,),
+          prefixIcon: Icon(
+            icon,
+            size: iconSize,
+          ),
           labelText: label,
           isDense: true,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(18),
-          ),
+              borderRadius: BorderRadius.circular(18),
+              borderSide: BorderSide(color: AppColors.grey)),
         ),
       ),
     );
