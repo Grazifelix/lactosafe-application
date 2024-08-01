@@ -1,3 +1,4 @@
+import 'package:LactoSafe/src/model/auth_service.dart';
 import 'package:LactoSafe/src/shared/app_colors.dart';
 import 'package:LactoSafe/src/view/camera_view.dart';
 import 'package:LactoSafe/src/view/food_list_view.dart';
@@ -16,6 +17,7 @@ import 'package:LactoSafe/src/view/cadastro_informações_page_view.dart';
 import 'package:LactoSafe/src/view/signup_page_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +25,9 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => AuthService()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

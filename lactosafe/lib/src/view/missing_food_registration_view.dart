@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:LactoSafe/src/model/info_food_model.dart';
 import 'package:LactoSafe/src/shared/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:LactoSafe/src/shared/app_images.dart';
 import 'package:LactoSafe/src/components/custom_text_field.dart';
 import 'package:LactoSafe/src/controller/textfield_controller.dart';
 
