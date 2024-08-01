@@ -61,11 +61,14 @@ class _SignInState extends State<SignIn> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         //Email
-                        CustomTextField(
-                          icon: Icons.email,
-                          label: 'Email',
-                          isObscure: false,
-                          controller: textFieldController.emailController,
+                        Padding(
+                          padding: EdgeInsets.all(10),
+                          child: CustomTextField(
+                            icon: Icons.email,
+                            label: 'Email',
+                            isObscure: false,
+                            controller: textFieldController.emailController,
+                          ),
                         ),
                         //Senha
                         CustomTextField(
@@ -135,24 +138,35 @@ class _SignInState extends State<SignIn> {
                         ),
 
                         ///CadastroButton
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Não possui uma conta?',
-                              style: TextStyle(fontSize: 15),
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.popAndPushNamed(
-                                      context, SignUpPage.routeName);
-                                },
-                                child: Text(
-                                  'Cadastre-se aqui!',
-                                  style: TextStyle(
-                                      fontSize: 15, color: AppColors.orange),
-                                )),
-                          ],
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Não possui uma conta?',
+                                style: TextStyle(fontSize: 13),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                child: TextButton(
+                                    onPressed: () {
+                                      Navigator.popAndPushNamed(
+                                          context, SignUpPage.routeName);
+                                    },
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                      child: Text(
+                                        'Cadastre-se aqui!',
+                                        style: TextStyle(
+                                            fontSize: 13,
+                                            color: AppColors.orange),
+                                      ),
+                                    )),
+                              ),
+                            ],
+                          ),
                         )
                       ],
                     ),
