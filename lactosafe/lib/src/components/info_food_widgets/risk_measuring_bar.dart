@@ -7,7 +7,7 @@ import 'package:LactoSafe/src/shared/app_settings.dart';
 import 'package:flutter/material.dart';
 
 class RiskMeasuringBar extends StatelessWidget {
-  final double foodRisk;
+  final int foodRisk;
   final String foodRiskName;
   const RiskMeasuringBar({super.key, required this.foodRisk, required this.foodRiskName});
 

@@ -1,8 +1,13 @@
-import 'package:LactoSafe/src/controller/Info_food_controllers/info_food_controller.dart';
-import 'package:LactoSafe/src/model/info_food_model.dart';
+
+
+import 'dart:io';
+
+import 'package:LactoSafe/src/components/info_food_widgets/build_food_information.dart';
+import 'package:LactoSafe/src/http/http_client.dart';
+import 'package:LactoSafe/src/model/food_model.dart';
+import 'package:LactoSafe/src/repositories/food_recognation_repository.dart';
 import 'package:LactoSafe/src/shared/app_colors.dart';
 import 'package:flutter/material.dart';
-import '../components/info_food_widgets/build_food_information.dart';
 
 class InfoFoodPage extends StatefulWidget {
   const InfoFoodPage({super.key});
@@ -13,24 +18,23 @@ class InfoFoodPage extends StatefulWidget {
 }
 
 class _InfoFoodPageState extends State<InfoFoodPage> {
-  Future<FoodModel>? _infoFoodfuture;
+  final FoodRecognizedRepository foodStore =
+      FoodRecognizedRepository(client: HttpClientFoodRecognation());
+  Future<FoodModel>? _infoFoodFuture;
 
   @override
   void initState() {
     super.initState();
-    _infoFoodfuture = myFuture();
+    _infoFoodFuture = myFuture();
   }
 
   Future<FoodModel> myFuture() async {
     await Future.delayed(const Duration(seconds: 2));
     // ignore: use_build_context_synchronously
-    final food = ModalRoute.of(context)!.settings.arguments as FoodModel;
-    if (food.getLactoseRisk == null) {
-      Future<FoodModel> foodRisk = getFoodRisk(food: food);
-      return foodRisk;
-    } else {
-      return food;
-    }
+    final foodImage = ModalRoute.of(context)!.settings.arguments as File;
+    Future<FoodModel> foodsRecognized = foodStore.getFoodsRecognation(image: foodImage);
+    
+   return foodsRecognized;
   }
 
   @override
@@ -48,11 +52,13 @@ class _InfoFoodPageState extends State<InfoFoodPage> {
           ),
         ),
         body: FutureBuilder(
-            future: _infoFoodfuture,
+            future: _infoFoodFuture,
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
                 return const Center(child: CircularProgressIndicator());
-              } else {
+              }
+              
+              else {
                 return buildFoodInformation(food: snapshot.data);
               }
             }));

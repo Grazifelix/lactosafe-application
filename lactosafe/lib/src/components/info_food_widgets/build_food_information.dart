@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:LactoSafe/src/components/info_food_widgets/risk_measuring_bar.dart';
 import 'package:LactoSafe/src/controller/Info_food_controllers/food_risk_text_color.dart';
+import 'package:LactoSafe/src/model/food_model.dart';
 import 'package:flutter/material.dart';
-import '../../model/info_food_model.dart';
 import '../../shared/app_colors.dart';
 import '../../shared/app_settings.dart';
 
@@ -16,7 +18,7 @@ Widget buildFoodInformation({required FoodModel food}) {
             width: 262,
             height: 100,
             child: Text(
-              food.getFoodName,
+             food.getIsFood == true ? food.getFoodName : "Isso não é um alimento",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppColors.grey,
@@ -33,8 +35,8 @@ Widget buildFoodInformation({required FoodModel food}) {
               child: ClipPath(
                 clipper: const ShapeBorderClipper(shape: CircleBorder()),
                 clipBehavior: Clip.hardEdge,
-                child: food.getImageUrl != null
-                    ? Image.network(food.getImageUrl as String,
+                child: food.getUserFoodImage != null
+                    ? Image.file(food.getUserFoodImage as File,
                         width: AppSettings.screenWidth / 4,
                         height: AppSettings.screenHeight / 2,
                         fit: BoxFit.cover)
@@ -51,36 +53,13 @@ Widget buildFoodInformation({required FoodModel food}) {
                       ),
               ),
             ),
-            Stack(
-              alignment: Alignment.topRight,
-              children: <Widget>[
-                Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: FloatingActionButton(
-                        heroTag: 'Favorite',
-                        backgroundColor: AppColors.pure_white,
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.favorite_border_rounded,
-                          color: AppColors.orange,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-              
-                  ],
-                )
-              ],
-            )
+           
           ]),
+          
           SizedBox(
             height: AppSettings.screenHeight / 15,
           ),
-          RiskMeasuringBar(foodRisk: food.getLactoseRisk as double, foodRiskName: food.getLactoseRiskStr as String,),
+          RiskMeasuringBar(foodRisk: food.getLactoseRisk, foodRiskName: food.getLactoseRiskString,),
           SizedBox(
             height: AppSettings.screenHeight / 16,
           ),
@@ -110,10 +89,10 @@ Widget buildFoodInformation({required FoodModel food}) {
                     ),
                   ),
                   TextSpan(
-                    text: '${food.getLactoseRiskStr}.',
+                    text: '${food.getLactoseRiskString}.',
                     style: TextStyle(
                       color: foodRiskTextColor(
-                          risk: food.getLactoseRiskStr as String),
+                          risk: food.getLactoseRiskString),
                       fontSize: 18,
                       fontFamily: 'Roboto',
                       fontWeight: FontWeight.w700,
@@ -156,37 +135,46 @@ Widget buildFoodInformation({required FoodModel food}) {
             height: AppSettings.screenHeight / 48,
           ),
           //transformar essa parte em um ListBuilder
-          Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.orange, width: 2),
-                  borderRadius: BorderRadius.circular(24)),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.gpp_maybe_outlined,
-                    color: AppColors.orange,
-                    size: 40,
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Expanded(
-                      child: Text(
-                    "Nome do Alimento", //nome do alimento precisa ser dinamico
-                    style: TextStyle(
-                      color: AppColors.grey,
-                      fontSize: 18,
-                      fontFamily: 'Roboto',
+          
+          ListView.builder(shrinkWrap: true, itemCount: food.getIngredientes.length, itemBuilder: (context, index){
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.orange, width: 2),
+                    borderRadius: BorderRadius.circular(24)),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.gpp_maybe_outlined,
+                      color: AppColors.orange,
+                      size: 40,
                     ),
-                  ))
-                ],
-              )),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                        child: Text(
+                      food.getIngredientes[index], //nome do alimento precisa ser dinamico
+                      style: TextStyle(
+                        color: AppColors.grey,
+                        fontSize: 18,
+                        fontFamily: 'Roboto',
+                      ),
+                    ))
+                  ],
+                ),
+                
+                ),
+            );
+          }),
+          
           SizedBox(
             height: AppSettings.screenHeight / 30,
           ),
           Text(
-            "Tabela Nutricional do ${food.getFoodName} (por unidade de 30g):", //mudar para o nome do alimento ficar dinamico
+            "Tabela Nutricional do ${food.getFoodName}",
             style: TextStyle(
                 color: AppColors.grey,
                 fontFamily: 'Roboto',
@@ -199,7 +187,7 @@ Widget buildFoodInformation({required FoodModel food}) {
           ),
 
           Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
                 color: AppColors.pure_white,
                 borderRadius: BorderRadius.circular(24), 
@@ -230,12 +218,7 @@ Widget buildFoodInformation({required FoodModel food}) {
                             fontFamily: "Roboto",
                             fontSize: 18,
                             fontWeight: FontWeight.w600)),
-                    Text("%VD",
-                        style: TextStyle(
-                            color: AppColors.grey,
-                            fontFamily: "Roboto",
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600))
+                   
                   ],
                 ),
                 Container(
@@ -254,18 +237,12 @@ Widget buildFoodInformation({required FoodModel food}) {
                           fontSize: 18,
                         ),
                       ),
-                      Text("0",
+                      Text(food.getCalorias,
                           style: TextStyle(
                             color: AppColors.grey,
                             fontFamily: "Roboto",
                             fontSize: 18,
                           )),
-                      Text("0",
-                          style: TextStyle(
-                            color: AppColors.grey,
-                            fontFamily: "Roboto",
-                            fontSize: 18,
-                          ))
                     ],
                   ),
                 ),
@@ -273,7 +250,7 @@ Widget buildFoodInformation({required FoodModel food}) {
                   height: 8,
                 ),
                 Container(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(24),
                       color: AppColors.backgroundColor),
@@ -281,25 +258,20 @@ Widget buildFoodInformation({required FoodModel food}) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Carboidratos      ",
+                        "Carboidratos",
                         style: TextStyle(
                           color: AppColors.grey,
                           fontFamily: "Roboto",
                           fontSize: 18,
                         ),
                       ),
-                      Text("0",
+                      Text(food.getCarboidrato,
                           style: TextStyle(
                             color: AppColors.grey,
                             fontFamily: "Roboto",
                             fontSize: 18,
                           )),
-                      Text("0",
-                          style: TextStyle(
-                            color: AppColors.grey,
-                            fontFamily: "Roboto",
-                            fontSize: 18,
-                          ))
+  
                     ],
                   ),
                 ),
@@ -317,25 +289,20 @@ Widget buildFoodInformation({required FoodModel food}) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Proteínas           ",
+                        "Proteínas",
                         style: TextStyle(
                           color: AppColors.grey,
                           fontFamily: "Roboto",
                           fontSize: 18,
                         ),
                       ),
-                      Text("0",
+                      Text(food.getProteina,
                           style: TextStyle(
                             color: AppColors.grey,
                             fontFamily: "Roboto",
                             fontSize: 18,
                           )),
-                      Text("0",
-                          style: TextStyle(
-                            color: AppColors.grey,
-                            fontFamily: "Roboto",
-                            fontSize: 18,
-                          ))
+                      
                     ],
                   ),
                 ),
@@ -352,25 +319,20 @@ Widget buildFoodInformation({required FoodModel food}) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Gorduras Totais",
+                        "Gordura",
                         style: TextStyle(
                           color: AppColors.grey,
                           fontFamily: "Roboto",
                           fontSize: 18,
                         ),
                       ),
-                      Text("0",
+                      Text(food.getGordura,
                           style: TextStyle(
                             color: AppColors.grey,
                             fontFamily: "Roboto",
                             fontSize: 18,
                           )),
-                      Text("0",
-                          style: TextStyle(
-                            color: AppColors.grey,
-                            fontFamily: "Roboto",
-                            fontSize: 18,
-                          ))
+                      
                     ],
                   ),
                 ),

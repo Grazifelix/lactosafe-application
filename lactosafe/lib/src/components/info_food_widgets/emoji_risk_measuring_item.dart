@@ -4,7 +4,7 @@ import 'package:LactoSafe/src/shared/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-Widget emojiRiskMeasuringItem({required double risk}) {
+Widget emojiRiskMeasuringItem({required int risk}) {
  //double risk = double.parse(food.getChanceLactose);
  
   if (risk <= 70) {

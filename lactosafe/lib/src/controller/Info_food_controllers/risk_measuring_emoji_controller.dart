@@ -1,6 +1,6 @@
 import 'package:LactoSafe/src/shared/app_images.dart';
 
-String riskMeasuringEmoji({required double foodRisk}) {
+String riskMeasuringEmoji({required int foodRisk}) {
   switch (foodRisk) {
     case 0:
       return AppImages.smileEmoji;
