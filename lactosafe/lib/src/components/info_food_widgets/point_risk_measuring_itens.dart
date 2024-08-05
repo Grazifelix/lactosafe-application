@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../shared/app_colors.dart';
 
-Widget pointRiskMeasuringItem({required double risk}) {
+Widget pointRiskMeasuringItem({required int risk}) {
   //double risk = double.parse(food.getChanceLactose);
   if (risk <= 70) {
     return Positioned(

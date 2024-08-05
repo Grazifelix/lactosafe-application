@@ -1,4 +1,4 @@
-double itemsRiskMeasuringPosition({required double foodRisk}) {
+double itemsRiskMeasuringPosition({required int foodRisk}) {
   switch(foodRisk){
     case 0 || > 75 && <= 100:
       return 10;

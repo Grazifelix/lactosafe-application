@@ -9,4 +9,5 @@ class AppColors {
   static Color green = const Color(0x9928DF00);
   static Color greenShadow = Color.fromARGB(213, 45, 112, 30);
   static Color backgroundColor = const  Color(0xFFF8F8F8);
+  static Color pure_white = Color.fromARGB(255, 255, 255, 255);
 }
