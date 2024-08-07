@@ -13,7 +13,7 @@ Widget buildFoodInformation({required FoodModel food}) {
     alignment: Alignment.topCenter,
     child: SingleChildScrollView(
       child: Column(
-        children: [
+        children: food.getIsFood ? [
           SizedBox(
             width: 262,
             height: 100,
@@ -98,14 +98,15 @@ Widget buildFoodInformation({required FoodModel food}) {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
+                  food.getIngredientes.isNotEmpty ?
                   TextSpan(
                       text: "\nSubstitua por ${food.getFoodName} sem lactose: ",
                       style: TextStyle(
                         color: AppColors.grey,
                         fontSize: 18,
                         fontFamily: 'Roboto',
-                      )),
-                  TextSpan(
+                      )) : const TextSpan(),
+                  food.getIngredientes.isNotEmpty ? TextSpan(
                       text:
                           "confira receitas.", //receitas precisa ser clicavel e que leve para um link externo
                       style: TextStyle(
@@ -115,7 +116,7 @@ Widget buildFoodInformation({required FoodModel food}) {
                           fontWeight: FontWeight.w700,
                           decoration: TextDecoration.underline,
                           decorationColor: AppColors.orange,
-                          decorationThickness: 2))
+                          decorationThickness: 2)) : const TextSpan()
                 ])),
               )
             ]),
@@ -123,6 +124,7 @@ Widget buildFoodInformation({required FoodModel food}) {
           SizedBox(
             height: AppSettings.screenHeight / 30,
           ),
+          food.getIngredientes.isNotEmpty ? 
           Text(
             "Ingredientes que contém lactose neste alimento:",
             style: TextStyle(
@@ -130,7 +132,7 @@ Widget buildFoodInformation({required FoodModel food}) {
                 fontFamily: 'Roboto',
                 fontSize: 24,
                 fontWeight: FontWeight.w700),
-          ),
+          ): Container(),
           SizedBox(
             height: AppSettings.screenHeight / 48,
           ),
@@ -343,8 +345,48 @@ Widget buildFoodInformation({required FoodModel food}) {
               ],
             ),
           ),
-          SizedBox(height: 40,)
-        ],
+          const SizedBox(height: 40,)
+        ] : [SizedBox(
+            width: 262,
+            height: 100,
+            child: Text(
+             "Isso não é um alimento",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: AppColors.grey,
+                fontSize: 24,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          Stack(alignment: Alignment.center, children: <Widget>[
+            SizedBox(
+              width: AppSettings.screenWidth,
+              height: AppSettings.screenHeight / 3,
+              child: ClipPath(
+                clipper: const ShapeBorderClipper(shape: CircleBorder()),
+                clipBehavior: Clip.hardEdge,
+                child: food.getUserFoodImage != null
+                    ? Image.file(food.getUserFoodImage as File,
+                        width: AppSettings.screenWidth / 4,
+                        height: AppSettings.screenHeight / 2,
+                        fit: BoxFit.cover)
+                    : Container(
+                        width: AppSettings.screenWidth / 4,
+                        height: AppSettings.screenHeight / 2,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: AppColors.grey, shape: BoxShape.circle),
+                        child: const Text(
+                          "Erro ao carregar imagem",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+              ),
+            ),
+           
+          ]),],
       ),
     ),
   );

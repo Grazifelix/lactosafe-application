@@ -40,6 +40,7 @@ class _InfoFoodPageState extends State<InfoFoodPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {

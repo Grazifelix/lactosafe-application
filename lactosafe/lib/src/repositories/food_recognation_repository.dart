@@ -19,7 +19,7 @@ class FoodRecognizedRepository implements IFoodRecognationRepository {
   Future<FoodModel> getFoodsRecognation({required File image}) async {
     final response = await client.post(
         url:
-            'https://lasctosafe-4r6t9wvzp-joao-vitors-projects-8d69260f.vercel.app/reconhecer-imagem',
+            'https://lasctosafe-l4mdcvwrp-joao-vitors-projects-8d69260f.vercel.app/reconhecer-imagem',
         image: image,
         userId: "1");
     print(response.statusCode);

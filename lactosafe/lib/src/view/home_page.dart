@@ -7,8 +7,6 @@ import 'package:LactoSafe/src/view/map_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
   static const routeName = '/home';
@@ -22,32 +20,35 @@ class _HomePageState extends State<HomePage> {
   int _indiceAtual = 0;
 
   void onTabTapped(int index) {
-    setState(() {
-      _indiceAtual = index;
-    });
+    // setState(() {
+    //   _indiceAtual = index;
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppColors.backgroundColor,
         appBar: AppBar(
+          backgroundColor: AppColors.backgroundColor,
           automaticallyImplyLeading: false,
-          toolbarHeight: AppSettings.screenHeight/12,
-          leading: PhotoWidget(picture: null, height: 4, width: 4),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: InkWell(
-                onTap: () {
-                  Navigator.popAndPushNamed(context, '/settings');
-                },
-                child: SvgPicture.asset(
-                  AppImages.menuIcon,
-                  height: AppSettings.screenHeight / 15,
-                ),
+          toolbarHeight: AppSettings.screenHeight / 12,
+          leading:
+              Padding(
+                padding: const EdgeInsets.only(left: .0),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                            Image.asset("assets/images/lactosafe_logo_letterless.png"),
+                            RichText(
+                text: TextSpan(children: [
+                  TextSpan(text: "Lacto",  style: TextStyle(color: AppColors.orange, fontWeight: FontWeight.w800)),
+                  TextSpan(
+                      text: "Safe",
+                      style: TextStyle(color: AppColors.grey, fontWeight: FontWeight.w800)),
+                ]),
+                            )
+                          ]),
               ),
-            ),
-          ],
+          leadingWidth: 120,
         ),
         body: _pages.elementAt(_indiceAtual),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -56,13 +57,12 @@ class _HomePageState extends State<HomePage> {
             height: 85.0,
             child: FittedBox(
                 child: FloatingActionButton.large(
-              onPressed: () {
-                Navigator.pushNamed(context, '/camera');
-                
-              },
-              backgroundColor: AppColors.orange,
-              child: Image.asset(AppImages.cameraIcon)
-            ))),
+                  shape: const StadiumBorder(),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/camera');
+                    },
+                    backgroundColor: AppColors.orange,
+                    child: Image.asset(AppImages.cameraIcon)))),
         bottomNavigationBar: SizedBox(
           height: 90,
           child: _getBottomNavigationBar(),
@@ -75,22 +75,24 @@ class _HomePageState extends State<HomePage> {
           topRight: Radius.circular(40.0), topLeft: Radius.circular(40.0)),
       child: BottomNavigationBar(
         iconSize: 30.0,
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.pure_white,
         unselectedItemColor: AppColors.grey,
         selectedItemColor: AppColors.orange,
         currentIndex: _indiceAtual,
         onTap: onTabTapped,
         items: [
           BottomNavigationBarItem(
-              icon: 
-              Image.asset(AppImages.homeIcon),
-
-              label: 'Home'),
+              icon: Image.asset(
+                AppImages.homeIcon,
+                color: AppColors.pure_white,
+              ),
+              label: ''),
           BottomNavigationBarItem(
-              icon: 
-              Image.asset(AppImages.mapIcon),
-
-              label: 'Mapa')
+              icon: Image.asset(
+                AppImages.mapIcon,
+                color: AppColors.pure_white,
+              ),
+              label: "")
         ],
       ),
     );

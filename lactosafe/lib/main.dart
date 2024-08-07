@@ -13,15 +13,8 @@ import 'package:LactoSafe/src/view/welcome_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:LactoSafe/src/view/cadastro_informações_page_view.dart';
 import 'package:LactoSafe/src/view/signup_page_view.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
   runApp(const MyApp());
 }
 
@@ -56,7 +49,7 @@ class MyApp extends StatelessWidget {
           appBarTheme: AppBarTheme(
               elevation: 0, backgroundColor: AppColors.backgroundColor),
         ),
-        initialRoute: WelcomePage.routeName,
+        initialRoute: HomePage.routeName,
         routes: {
           SignIn.routeName: (context) => const SignIn(),
           ResetPassword.routeName: (context) => const ResetPassword(),

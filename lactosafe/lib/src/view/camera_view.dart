@@ -14,7 +14,9 @@ class CameraView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
+        backgroundColor: AppColors.backgroundColor,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -28,7 +30,9 @@ class CameraView extends StatelessWidget {
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           ElevatedButton(
-            style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.orange,
+                  shape: const StadiumBorder()),
               onPressed: () {
                 CameraFoodPicture().takePicture(
                     context: context, sourceType: CameraSource.camera);
@@ -44,7 +48,7 @@ class CameraView extends StatelessWidget {
                     const SizedBox(
                       width: 30,
                     ),
-                    const Text("Camera")
+                    Text("Camera", style: TextStyle(color: AppColors.backgroundColor),)
                   ],
                 ),
               )),
@@ -66,7 +70,10 @@ class CameraView extends StatelessWidget {
                 GalleryFoodPicture().takePicture(
                     context: context, sourceType: CameraSource.gallery);
               },
-              style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
+              style: ElevatedButton.styleFrom(
+                shape: const StadiumBorder(),
+                backgroundColor: AppColors.orange,
+              ),
               child: SizedBox(
                 height: AppSettings.screenHeight / 10,
                 width: AppSettings.screenWidth / 2,
@@ -78,7 +85,7 @@ class CameraView extends StatelessWidget {
                     const SizedBox(
                       width: 30,
                     ),
-                    const Text("Galeria")
+                    Text("Galeria", style: TextStyle(color: AppColors.backgroundColor),)
                   ],
                 ),
               ))

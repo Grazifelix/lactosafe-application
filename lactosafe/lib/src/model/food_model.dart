@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 class FoodModel {
@@ -51,12 +52,26 @@ class FoodModel {
       }
     }
 
+    List verifyIngredientsList(dynamic ingredientsList){
+      if(ingredientsList.runtimeType == [].runtimeType){
+        print("É uma lista");
+        return ingredientsList;
+      } else if (ingredientsList.runtimeType == String) {
+        print("É uma String");
+        String ingredients = ingredientsList.replaceAll("\'", "\"");
+        return jsonDecode(ingredients);
+      } else {
+        return [];
+      }
+      
+    }
+
     final isFood = boolParsing(data["e_alimento"]);
     if (isFood == false) {
-      return  FoodModel(
+      return FoodModel(
         foodName: "",
         isFood: isFood,
-        ingredientes: [""],
+        ingredientes: [],
         calorias: "",
         carboidrato: "",
         gordura: "",
@@ -66,15 +81,15 @@ class FoodModel {
         recipeUrl: "",
       );
     } else {
-      final name = data["alimento_nome"];
-      final ingredientes = data["ingredientes_com_lactose"];
-      final calorias = data["quantidade_calorias"];
-      final carboidrato = data["quantidade_carboidrato"];
-      final gordura = data["quantidade_gordura"];
-      final proteina = data["quantidade_proteina"];
+      final name = data["alimento_nome"].toString();
+      final ingredientes = verifyIngredientsList(data["ingredientes_com_lactose"]);
+      final calorias = data["quantidade_calorias"].toString();
+      final carboidrato = data["quantidade_carboidrato"].toString();
+      final gordura = data["quantidade_gordura"].toString();
+      final proteina = data["quantidade_proteina"].toString();
       final lactoseRisk = int.parse(data["risco_int"]);
-      final lactoseRiskStr = data["risco_str"];
-      final recipeUrl = data["receitasemlactose_link"];
+      final lactoseRiskStr = data["risco_str"].toString();
+      final recipeUrl = data["receitasemlactose_link"].toString();
 
       return FoodModel(
         foodName: name,
@@ -89,7 +104,6 @@ class FoodModel {
         recipeUrl: recipeUrl,
       );
     }
-    throw FormatException("Erro ao deserializar json");
   }
 }
 

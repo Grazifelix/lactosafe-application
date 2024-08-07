@@ -1,3 +1,4 @@
+import 'package:LactoSafe/src/shared/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:LactoSafe/src/shared/app_images.dart';
 
@@ -91,84 +92,90 @@ class PageOne extends StatelessWidget {
 class PageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          flex: 3,
-          child: Container(
-            alignment: Alignment.center,
-            child: Image.asset(
-              AppImages.pageTwo,
-              width: 800,
-              height: 800,
+    return Padding(
+      padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+      child: Container(
+        color: AppColors.backgroundColor,
+        child: Column(
+          children: [
+            Expanded(
+              flex: 3,
+              child: Container(
+                alignment: Alignment.center,
+                child: Image.asset(
+                  AppImages.pageTwo,
+                  width: 800,
+                  height: 800,
+                ),
+              ),
             ),
-          ),
-        ),
-        Expanded(
-          flex: 4,
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Column(
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: RichText(
-                      text: const TextSpan(
-                        style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w900,
-                          color: Color.fromARGB(221, 63, 62, 62),
+            Expanded(
+              flex: 4,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: RichText(
+                          text: TextSpan(
+                            style: TextStyle(
+                              fontSize: 32,
+                              fontWeight: FontWeight.w900,
+                              color: AppColors.grey,
+                            ),
+                            children: [
+                              TextSpan(text: "Escaneie "),
+                              TextSpan(
+                                  text: "Alimentos",
+                                  style: TextStyle(color: AppColors.orange)),
+                            ],
+                          ),
                         ),
-                        children: [
-                          TextSpan(text: "Escaneie "),
-                          TextSpan(
-                              text: "Alimentos",
-                              style: TextStyle(color: Colors.deepOrange)),
-                        ],
                       ),
                     ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: RichText(
-                      text: const TextSpan(
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black54,
+                    Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: RichText(
+                          text: TextSpan(
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.grey,
+                            ),
+                            children: <TextSpan>[
+                              const TextSpan(
+                                text: "E tenha mais ",
+                              ),
+                              TextSpan(
+                                text: "segurança ",
+                                style: TextStyle(
+                                  color: AppColors.orange,
+                                ),
+                              ),
+                              TextSpan(
+                                text: "na hora de consumi-los.",
+                                style: TextStyle(
+                                  color: AppColors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: "E tenha mais ",
-                          ),
-                          TextSpan(
-                            text: "segurança ",
-                            style: TextStyle(
-                              color: Colors.deepOrange,
-                            ),
-                          ),
-                          TextSpan(
-                            text: "na hora de consumi-los",
-                            style: TextStyle(
-                              color: Colors.black54,
-                            ),
-                          ),
-                        ],
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
@@ -312,20 +319,20 @@ class PageFour extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: RichText(
-                      text: const TextSpan(
+                      text: TextSpan(
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w400,
-                          color: Colors.black54,
+                          color: AppColors.grey,
                         ),
                         children: <TextSpan>[
-                          TextSpan(
+                          const TextSpan(
                             text: "Sejam ",
                           ),
                           TextSpan(
                             text: "restaurantes ou supermercados ",
                             style: TextStyle(
-                              color: Colors.deepOrange,
+                              color: AppColors.orange,
                             ),
                           ),
                           TextSpan(
