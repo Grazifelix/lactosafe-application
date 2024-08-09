@@ -1,4 +1,6 @@
 import 'package:LactoSafe/src/components/photo_widget.dart';
+import 'package:LactoSafe/src/controller/camera_controller.dart';
+import 'package:LactoSafe/src/shared/app_camera_source.dart';
 import 'package:LactoSafe/src/shared/app_colors.dart';
 import 'package:LactoSafe/src/shared/app_images.dart';
 import 'package:LactoSafe/src/shared/app_settings.dart';
@@ -16,14 +18,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  static const List _pages = [HomePageBody(), MapPage()];
+  static const List _pages = [HomePageBody()];
   int _indiceAtual = 0;
-
-  void onTabTapped(int index) {
-    // setState(() {
-    //   _indiceAtual = index;
-    // });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,15 +36,15 @@ class _HomePageState extends State<HomePage> {
                             Image.asset("assets/images/lactosafe_logo_letterless.png"),
                             RichText(
                 text: TextSpan(children: [
-                  TextSpan(text: "Lacto",  style: TextStyle(color: AppColors.orange, fontWeight: FontWeight.w800)),
+                  TextSpan(text: "LactoSafe",  style: TextStyle(color: AppColors.grey, fontWeight: FontWeight.w800)),
                   TextSpan(
-                      text: "Safe",
-                      style: TextStyle(color: AppColors.grey, fontWeight: FontWeight.w800)),
+                      text: " (Beta v1.0)",
+                      style: TextStyle(color: AppColors.orange, fontWeight: FontWeight.w200)),
                 ]),
                             )
                           ]),
               ),
-          leadingWidth: 120,
+          leadingWidth: 200,
         ),
         body: _pages.elementAt(_indiceAtual),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -59,7 +55,8 @@ class _HomePageState extends State<HomePage> {
                 child: FloatingActionButton.large(
                   shape: const StadiumBorder(),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/camera');
+                      // Navigator.pushNamed(context, '/camera');
+                    CameraFoodPicture().takePicture(context: context, sourceType: CameraSource.camera);
                     },
                     backgroundColor: AppColors.orange,
                     child: Image.asset(AppImages.cameraIcon)))),
@@ -79,12 +76,18 @@ class _HomePageState extends State<HomePage> {
         unselectedItemColor: AppColors.grey,
         selectedItemColor: AppColors.orange,
         currentIndex: _indiceAtual,
-        onTap: onTabTapped,
+        onTap: (int index) {
+          switch (index) {
+            case 0:
+              GalleryFoodPicture().takePicture(
+                    context: context, sourceType: CameraSource.gallery);
+          }
+        },
         items: [
           BottomNavigationBarItem(
               icon: Image.asset(
-                AppImages.homeIcon,
-                color: AppColors.pure_white,
+                AppImages.galleryIcon,
+                color: AppColors.orange,
               ),
               label: ''),
           BottomNavigationBarItem(

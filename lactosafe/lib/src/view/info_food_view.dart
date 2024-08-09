@@ -44,7 +44,7 @@ class _InfoFoodPageState extends State<InfoFoodPage> {
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.popAndPushNamed(context, "/home");
             },
             icon: const Icon(Icons.arrow_back_rounded),
             color: AppColors.orange,

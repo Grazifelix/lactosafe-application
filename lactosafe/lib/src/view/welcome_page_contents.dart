@@ -112,14 +112,14 @@ class PageTwo extends StatelessWidget {
             Expanded(
               flex: 4,
               child: Align(
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.center,
                 child: Column(
                   children: [
                     Padding(
                       padding:
                           const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
                       child: Align(
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment.center,
                         child: RichText(
                           text: TextSpan(
                             style: TextStyle(
@@ -128,7 +128,7 @@ class PageTwo extends StatelessWidget {
                               color: AppColors.grey,
                             ),
                             children: [
-                              TextSpan(text: "Escaneie "),
+                              const TextSpan(text: "Escaneie "),
                               TextSpan(
                                   text: "Alimentos",
                                   style: TextStyle(color: AppColors.orange)),
@@ -144,7 +144,7 @@ class PageTwo extends StatelessWidget {
                         child: RichText(
                           text: TextSpan(
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 24,
                               fontWeight: FontWeight.w400,
                               color: AppColors.grey,
                             ),
