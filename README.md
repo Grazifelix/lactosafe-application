@@ -1,6 +1,9 @@
-# LactoSafe
+# LactoSafe App
+
+### [📱 Download the APK](https://drive.google.com/drive/folders/19K5HI4AF8cZ6hdUaEBigzil0JU7fjFwP?usp=sharing)
 
 ### [👨‍💻 View the backend with Google IA](https://github.com/JoaoVitorA7/lactosafeAPI/tree/master)
+
 
 _Projeto desenvolvido para o sexto periodo da faculdade de Sistemas de Informação da UFRPE, 2023, Recife-PE._
 
