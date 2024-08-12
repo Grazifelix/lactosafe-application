@@ -9,11 +9,11 @@ Widget textRiskMeasuringItens({required int riskPorcentage, required String risk
     return Positioned(
         top: 35,
         left: AppSettings.screenWidth / itemsRiskMeasuringPosition(foodRisk: riskPorcentage) - 12,
-        child: Text(risk, style: TextStyle(color: foodRiskTextColor(risk: risk), fontFamily: 'Roboto', fontSize: 16, fontWeight: FontWeight.w900),));
+        child: Text(risk, style: TextStyle(color: foodRiskTextColor(foodRisk: riskPorcentage), fontFamily: 'Roboto', fontSize: 16, fontWeight: FontWeight.w900),));
   } else {
     return Positioned(
         top: 35,
         right: AppSettings.screenWidth / itemsRiskMeasuringPosition(foodRisk: riskPorcentage) - 12,
-        child: Text(risk, style: TextStyle(color: foodRiskTextColor(risk: risk),fontFamily: 'Roboto', fontSize: 16, fontWeight: FontWeight.w900),));
+        child: Text(risk, style: TextStyle(color: foodRiskTextColor(foodRisk: riskPorcentage),fontFamily: 'Roboto', fontSize: 16, fontWeight: FontWeight.w900),));
   }
 }

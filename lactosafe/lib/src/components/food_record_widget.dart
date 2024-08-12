@@ -419,15 +419,14 @@ Widget buildFoodCard(
                           height: 28,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30.0),
-                              color: foodRiskTextColor(
-                                  risk: food.getLactoseRiskStr as String)),
+                              color: foodRiskTextColor(foodRisk: food.getLactoseRisk as int)),
                         ),
                         Text(food.getLactoseRiskStr as String,
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 18,
                               color: foodRiskTextColor(
-                                  risk: food.getLactoseRiskStr as String),
+                                  foodRisk: food.getLactoseRisk as int),
                             ))
                       ],
                     )

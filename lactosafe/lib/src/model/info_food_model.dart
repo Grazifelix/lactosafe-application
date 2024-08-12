@@ -3,7 +3,7 @@ import 'dart:io';
 class FoodModel {
   String nome;
   String? helpText;
-  double? lactoseRisk;
+  int? lactoseRisk;
   String? lactoseRiskStr;
   double? chanceAlimento;
   File? userFoodImage;
@@ -20,7 +20,7 @@ class FoodModel {
 
   String get getFoodName => nome;
   String? get getHelpText => helpText;
-  double? get getLactoseRisk => lactoseRisk;
+  int? get getLactoseRisk => lactoseRisk;
   String? get getLactoseRiskStr => lactoseRiskStr;
   double? get getChanceAlimento => chanceAlimento;
   File? get getImage => userFoodImage;
@@ -38,7 +38,7 @@ class FoodModel {
     helpText = newhelpText;
   }
 
-  void setLactoseRisk(double newLactoseRisk) {
+  void setLactoseRisk(int newLactoseRisk) {
     lactoseRisk = newLactoseRisk;
   }
 

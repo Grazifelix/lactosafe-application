@@ -128,9 +128,9 @@ class PageTwo extends StatelessWidget {
                               color: AppColors.grey,
                             ),
                             children: [
-                              const TextSpan(text: "Escaneie "),
+                              const TextSpan(text: "Scan "),
                               TextSpan(
-                                  text: "Alimentos",
+                                  text: "Food",
                                   style: TextStyle(color: AppColors.orange)),
                             ],
                           ),
@@ -150,16 +150,16 @@ class PageTwo extends StatelessWidget {
                             ),
                             children: <TextSpan>[
                               const TextSpan(
-                                text: "E tenha mais ",
+                                text: "And be ",
                               ),
                               TextSpan(
-                                text: "segurança ",
+                                text: "safer ",
                                 style: TextStyle(
                                   color: AppColors.orange,
                                 ),
                               ),
                               TextSpan(
-                                text: "na hora de consumi-los.",
+                                text: "when consuming them.",
                                 style: TextStyle(
                                   color: AppColors.grey,
                                 ),

@@ -2,21 +2,21 @@
 import 'package:LactoSafe/src/shared/app_colors.dart';
 import 'package:flutter/material.dart';
 
-Color foodRiskTextColor({required String risk}){
-  switch(risk){
-    case 'Inexistente':
+Color foodRiskTextColor({required int foodRisk}){
+  switch(foodRisk){
+    case 0:
       return AppColors.greenShadow;
 
-    case 'Baixo':
+    case > 0 && < 25:
       return AppColors.green;
 
-    case 'Medio':
+    case >= 25 && <= 50:
       return AppColors.yellow;
 
-    case 'Alto':
+    case > 50 && <= 75:
       return AppColors.orange;
 
-    case 'Muito Alto':
+    case > 75 && <= 100:
       return AppColors.red;
 
     default:
